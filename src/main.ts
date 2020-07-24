@@ -1,18 +1,22 @@
-import { NestFactory } from '@nestjs/core'
+require('dotenv').config()
+
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify'
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
-import { PackageInfo } from '@goatlab/fluent/dist/core/Loopback/goat'
+
 import { AllExceptionsFilter } from '@goatlab/fluent/dist/core/Nestjs/http-exceptions.filter'
 import { Bash } from '@goatlab/fluent/dist/Helpers/Bash'
 import { Log } from '@goatlab/fluent/dist/Log/Logger'
-export const pkg: PackageInfo = require('../package.json')
-
 import { MyApp } from './application'
+import { NestFactory } from '@nestjs/core'
+import { PackageInfo } from '@goatlab/fluent/dist/core/Loopback/goat'
 import { join } from 'path'
 import { watch } from 'chokidar'
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+export const pkg: PackageInfo = require('../package.json')
 
 let app: NestFastifyApplication
 
@@ -26,7 +30,10 @@ async function bootstrap() {
     .setTitle(pkg.name)
     .setDescription(pkg.description)
     .setVersion(pkg.version)
-    .addBearerAuth()
+    .addBearerAuth(
+      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+      'token',
+    )
     .build()
 
   app.useGlobalFilters(new AllExceptionsFilter())

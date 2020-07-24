@@ -1,12 +1,9 @@
-import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { PongModule } from './pong/pong.module'
-import { CatsModule } from './cats/Cats.module'
-import { GoatModules } from '@goatlab/fluent/dist/core/Nestjs/GoatApp'
 import { DatabaseModule } from './Database/database.module'
-import { join } from 'path'
+import { GoatModules } from '@goatlab/fluent/dist/core/Nestjs/GoatApp'
+import { Module } from '@nestjs/common'
 import { ServeStaticModule } from '@nestjs/serve-static'
-
+import { join } from 'path'
 @Module({
   imports: [
     DatabaseModule,
@@ -18,13 +15,11 @@ import { ServeStaticModule } from '@nestjs/serve-static'
         }),
       ],
     }),
+    ...GoatModules,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../.goat/manager'),
       exclude: ['/explorer*'],
     }),
-    PongModule,
-    CatsModule,
-    ...GoatModules,
   ],
 })
 export class MyApp {}

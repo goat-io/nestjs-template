@@ -1,24 +1,24 @@
-import { createConnection } from 'typeorm'
+import { FirebaseInit } from '@goatlab/fluent/dist/Providers/Firebase/FirebaseInit'
+import { createConnection } from '@goatlab/fluent/dist/core/Nestjs/Database/createConnection'
+import { join } from 'path'
 
-export const Databases = [
-  {
-    provide: 'MAIN_DATABASE',
-    useFactory: async () => {
-      const url = process.env.MONGO_URL
-      return createConnection({
-        type: 'mongodb',
-        username: 'user',
-        password: 'user',
-        host: '127.0.0.1',
-        port: 27017,
-        database: 'goat',
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        entities: [
-          `${__dirname}/../*/*.entity{.ts,.js}`,
-          `${__dirname}/../../node_modules/@goatlab/fluent/dist/core/Nestjs/Auth/User/*.entity{.ts,.js}`,
-        ],
-      })
-    },
-  },
+if (process.env.DATABASE_FIREBASE_NAME) {
+  FirebaseInit({
+    host: process.env.DATABASE_FIREBASE_HOST || undefined,
+    port: Number(process.env.DATABASE_FIREBASE_PORT) || undefined,
+    databaseName: process.env.DATABASE_FIREBASE_NAME,
+    serviceAccountPath: join(
+      __dirname,
+      '../..',
+      process.env.DATABASE_FIREBASE_SERVICE_ACCOUNT_PATH,
+    ),
+  })
+}
+
+export const Databases: any[] = [
+  createConnection({
+    connectionName: 'MAIN_DATABASE',
+    type: 'firebase',
+    serviceAccountPath: `${__dirname}/../../1ck-dev.service-account.json`,
+  }),
 ]
