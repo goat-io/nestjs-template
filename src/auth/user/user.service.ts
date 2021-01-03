@@ -1,37 +1,32 @@
-import { Hash } from '@goatlab/fluent/dist/Helpers/Hash'
-import { Injectable, Inject } from '@nestjs/common'
-import { IRepository } from '@goatlab/fluent/dist/core/Nestjs/Database/createRepository'
-import { UserDtoOut, UserDtoIn } from './user.dto'
-import { User } from './user.entity'
-import { TypeOrmConnector } from '@goatlab/fluent/dist/Providers/TypeOrm/TypeOrmConnector'
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { UserDtoIn, UserDtoOut } from './user.dto'
+
 import { FirebaseConnector } from '@goatlab/fluent/dist/Providers/Firebase/FirebaseConnector'
 import { GoatOutput } from '@goatlab/fluent/dist/Providers/types'
+import { Hash } from '@goatlab/fluent/dist/Helpers/Hash'
+import { OrganizationsService } from 'organizations/organizations.service'
+import { RoleService } from '../roles/roles.service'
+import { RoleUsersService } from '../roles_users/roles_users.service'
+import { User } from './user.entity'
 
-@Injectable()
-export class UsersService {
-  public model:
-    | FirebaseConnector<User, UserDtoIn, UserDtoOut>
-    | TypeOrmConnector<User, UserDtoIn, UserDtoOut>
-
-  constructor(
-    @Inject('USER_REPOSITORY')
-    private repositoryConnector: IRepository<User> | any,
-  ) {
-    if (repositoryConnector.type === 'firebase') {
-      this.model = new FirebaseConnector<User, UserDtoIn, UserDtoOut>(User)
-      return
-    }
-
-    this.model = new TypeOrmConnector<User, UserDtoIn, UserDtoOut>(User)
+export class UsersService extends FirebaseConnector<
+  User,
+  UserDtoIn,
+  UserDtoOut
+> {
+  constructor(relations?: any) {
+    super(User, relations)
   }
-
+  /**
+   *
+   * @param input
+   */
   async validate(
     input: UserDtoIn,
   ): Promise<GoatOutput<UserDtoIn, UserDtoOut> | null> {
     const { email, password } = input
-    const user = await this.model
-      .forceSelect(this.model._keys.password)
-      .where(this.model._keys.email, '=', email)
+    const user = await this.forceSelect(this._keys.password)
+      .where(this._keys.email, '=', email)
       .first()
 
     if (!user) return null
@@ -45,6 +40,23 @@ export class UsersService {
    * @param email
    */
   async findByEmail(email: string): Promise<GoatOutput<UserDtoIn, UserDtoOut>> {
-    return this.model.where(this.model._keys.email, '=', email).first()
+    return this.where(this._keys.email, '=', email).first()
+  }
+  /**
+   *
+   */
+  public roles = () => {
+    return this.belongsToMany<RoleService, RoleUsersService>(
+      RoleService,
+      RoleUsersService,
+      'roles',
+    )
+  }
+
+  public createdOrganizations = () => {
+    return this.hasMany<OrganizationsService>(
+      OrganizationsService,
+      'organizations',
+    )
   }
 }

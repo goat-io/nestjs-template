@@ -1,0 +1,8 @@
+runtime: nodejs12
+env_variables:
+  ENV: 'production'
+  PORT: 8080
+  MAIN_DATABASE_TYPE: 'firebase'
+  AUTH_USE_FIREBASE: 'true'
+  DATABASE_FIREBASE_NAME: 'nc-challenge'
+  DATABASE_FIREBASE_SERVICE_ACCOUNT_PATH: './nc-challenge.json'

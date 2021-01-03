@@ -1,6 +1,8 @@
 import { Decorators } from '@goatlab/fluent/dist/core/Nestjs/Database/decorators'
+import { Organization } from 'organizations/organizations.entity'
+import { Role } from '../roles/roles.entity'
 
-@Decorators.entity('User')
+@Decorators.entity('users')
 export class User {
   @Decorators.id()
   id: string
@@ -17,6 +19,15 @@ export class User {
   @Decorators.property({ required: false })
   lastName?: string
 
+  @Decorators.property({ required: false })
+  language?: string
+
+  @Decorators.property({ required: false })
+  country?: string
+
+  @Decorators.property({ required: false })
+  type?: string
+
   @Decorators.created()
   created: Date
 
@@ -28,4 +39,18 @@ export class User {
 
   @Decorators.version()
   version: number
+
+  @Decorators.belongsToMany<Role>({
+    entity: () => Role,
+    joinTableName: 'roles_users',
+    foreignKey: 'userId',
+    inverseForeignKey: 'roleId',
+  })
+  roles?: Role[]
+
+  @Decorators.hasMany({
+    entity: () => Organization,
+    inverse: organization => organization.owner,
+  })
+  organizations?: Organization[]
 }

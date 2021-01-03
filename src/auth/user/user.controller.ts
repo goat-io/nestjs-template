@@ -19,7 +19,7 @@ import {
   ApiQuery,
   ApiParam,
 } from '@nestjs/swagger'
-import { UsersService } from './user.service'
+
 import { UserDtoOut, UserDtoIn } from './user.dto'
 import { getModelSchemaRef } from '@loopback/rest'
 import { User } from './user.entity'
@@ -27,13 +27,13 @@ import { GoatFilter, GoatOutput } from '@goatlab/fluent/dist/Providers/types'
 import { For } from '@goatlab/fluent/dist/Helpers/For'
 import { getGoatFilterSchema } from '@goatlab/fluent/dist/core/dtos/filterSchema'
 import { Hash } from '@goatlab/fluent/dist/Helpers/Hash'
-
+import { UsersService } from './user.service'
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
-  private users: UsersService['model']
-  constructor(private readonly userRepository: UsersService) {
-    this.users = this.userRepository.model
+  private users: UsersService
+  constructor() {
+    this.users = new UsersService()
   }
   /**
    *

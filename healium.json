@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "healium-beb3f",
+  "private_key_id": "d1a7cd96370eca62b551d9897bba98300826ceee",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCj6Wwj40YH9fRE\nWDuzQHC4drIiv8QeLbSxlF/cLn1NOhAf7CUDmdXZEWQj5MD/7JigdmDVuUXzDYHp\nd97wJmvzgik01LuZX6ynOViizvJe+h8sBgK2kQXgi4dlmNuGqYxTDMniacMK9/Gz\n0DMOFbvAkfE+PtIHXKXgOlIWhjH6cMEztEcMqnR+pAChhbcsLYNsdKb0UC7KNm6t\nR/+RnR3GGPhmilJpWYiI+LeAvNCA/s6OgQQU0qDZffbOfSGSmZxVwVWSz3gMNMb0\nw4o4yoWg0nTqglsp7x6yci55EoDJEY/5wShB9RDjDIUwSwG3Mqyq8KNZuPNRsBFb\nKCr3GlprAgMBAAECggEANKWy4EwNoFz1mkYk1sxp6DXnvZWOrorLsQYRTC16faWa\nrEYzFVcCAvi9C3JcM1eRJmkfbUZXG1xJT+36o3QT1GEITznND9RVJlkbCSAjZTI9\ndOxxTqaCFr96O72/NR+cPMisx5Zk2U8OSU0kOO/uIEpADFgtKcQuWzkgSK/Nubye\nGOqfXRZH8zAJUMyMZWaRtAfEJU0ltaTEJrQM5TowaqQVhwCyGPconoGTDl9Y5g5+\nQjgQ8aSMpdWnNJ7FPR6D/984wn73Djn6G3a3bJQxkZCAj9eMzNuRD4Vz/wXiitI5\nwweya/j84o/HdmMEWYtQUtB/Qxd7KGd7QFB4zUowEQKBgQDOvAMKpidPLdBx8BCr\n5jpl4TtSADXQKAwaxVsNrn4E2YDEfQ8mPCc7OFeYqOboESbIAHBDpvTBjVYpEyra\niLCbYuY6AlAfFKhDRBrz2k51ou8T611vp8M9nTiuNk8sjPzf89po1/p25j95y6Bz\nOWmezgwijzFTlyBKC2AQd2nM3QKBgQDK+PwfiFNc2ghnvemJb/4SWROIHcCtpj7u\njuzUAMIQ6W0sW9Iv4LWmx3gqciLThr09+n5cibkE8eOW1M/umfqAsETVDi2N+gqm\nTv3ULrgEWA2HeLWcIy9643pNr/mTIB/SCSSVY0Xe8uS15U4SSoQ4t++X7WZlSCmg\nQFcDGlkL5wKBgQCz7x4ymZUjLDv9vzWzeEohvFyWLYqo5wJKFrX+fX4/mFOkMTkL\nTVXUDGDphTCckbkQYJlVuK3U/MAeNgmZdVlJlVXO7Y5wztj42wEed0bMyoiN7NBB\nS2H6caoQr0JQA1JhVewmTr032YUr69h2EWVli+8x8TG8kI/RAn+VNWoHnQKBgQCM\n0Uk6Jz6OwMXsE5oevBAtcpdWbC3tS9WFdKtiOlRpn0ka6WldxizA1MrNx/nZfzVz\n9oIMeZBfmeIoFuVbyIA/IAvhNMDuK3eQAmWf+/m3Kc/ZGSoGdXLPc1q640fnhvYM\npkM3UXR8RU/f0oLjtcceAp67bP0Jb5NRltHHWVRGKQKBgQCc+rwBDcc0NyIBh7fO\nBu9L83aHy7WN+9F/DbjOI2Jp3Gir6pya3g3awHSg96vvVjVZbcOxPPufGeAXBBtk\nnFld8hmdLEBtLBVRK+0/iaQZqrDFdI/m7EO68bKD/q6QS/NMKXA1H9z+fq8sZ1BA\nbIEDelpS+JiZGu7QJs3MhkeqVw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-541se@healium-beb3f.iam.gserviceaccount.com",
+  "client_id": "108642708598220891019",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-541se%40healium-beb3f.iam.gserviceaccount.com"
+}
